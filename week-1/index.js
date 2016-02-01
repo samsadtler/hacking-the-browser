@@ -42,7 +42,7 @@ $(document).ready(function(){
 function init(){
 	console.log('init')
 	inportMedia();
-	// window.addEventListener('deviceorientation', handleOrientation);
+	window.addEventListener('deviceorientation', handleOrientation);
 }
 function inportMedia(){
 	var dir = "cleo-field/";
@@ -66,19 +66,22 @@ function handleOrientation(event) {
   	var alpha    = event.alpha;
   	var beta     = event.beta;
 	var gamma    = event.gamma;
+	var buffer   = 10;
 	console.log('absolute: ', absolute, ' alpha: ', alpha, ' beta: ', beta, 'gamma: ', gamma)
  	
- 	if (gamma > preveriousGamma){
+ 	if (gamma > preveriousGamma + buffer){	
+ 		preveriousGamma = gamma;
 		if (frameCounter > frameArray.length | frameCounter == frameArray.length-1){
 			frameCounter = 0;
 		} else frameCounter++
 	}
-	if (gamma < preveriousGamma){
+	if (gamma < preveriousGamma - buffer){
+		preveriousGamma = gamma ;
 		if (frameCounter < 0 | frameCounter == 0 ){
 			frameCounter = frameArray.length-1;
 		} else frameCounter--
 	}
-	// frame(frameCounter);
+	frame(frameCounter);
   // Do stuff with the new orientation data
 }
 function checkWidth(){
