@@ -4,38 +4,37 @@ var windowHeight;
 var framePixels;
 var plays = 4;
 var frameArray = [];
-// 'cleo-field 01.jpg','cleo-field 02.jpg','cleo-field 03.jpg','cleo-field 04.jpg','cleo-field 05.jpg','cleo-field 06.jpg'
 var frameCounter = 0;
 var preveriousWidth = 0;
 var preveriousGamma = 0;
 $(document).ready(function(){
 	init();
 
-	;(function() {
-		console.log('throttler')
-	    var throttle = function(type, name, obj) {
-	        obj = obj || window;
-	        var running = false;
-	        var func = function() {
-	            if (running) { return; }
-	            running = true;
-	             requestAnimationFrame(function() {
-	                obj.dispatchEvent(new CustomEvent(name));
-	                running = false;
-	            });
-	        };
-	        obj.addEventListener(type, func);
-	    };
+	// (function() {
+	// 	console.log('throttler')
+	//     var throttle = function(type, name, obj) {
+	//         obj = obj || window;
+	//         var running = false;
+	//         var func = function() {
+	//             if (running) { return; }
+	//             running = true;
+	//              requestAnimationFrame(function() {
+	//                 obj.dispatchEvent(new CustomEvent(name));
+	//                 running = false;
+	//             });
+	//         };
+	//         obj.addEventListener(type, func);
+	//     };
 
-	    /* init - you can init any event */
-	    throttle("resize", "optimizedResize");
-	})();
+	//     /* init - you can init any event */
+	//     throttle("resize", "optimizedResize");
+	// })();
 
-	// handle event
-	window.addEventListener("optimizedResize", function() {
-		checkWidth();
-	    console.log("Resource conscious resize callback!");
-	});
+	// // handle event
+	// window.addEventListener("optimizedResize", function() {
+	// 	checkWidth();
+	//     console.log("Resource conscious resize callback!");
+	// });
 });
 
 
@@ -43,6 +42,7 @@ function init(){
 	console.log('init')
 	inportMedia();
 	window.addEventListener('deviceorientation', handleOrientation);
+	window.addEventListener("resize" , checkWidth);
 }
 function inportMedia(){
 	var dir = "cleo-field/";
