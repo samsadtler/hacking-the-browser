@@ -45,21 +45,26 @@ function init(){
 	window.addEventListener("resize" , checkWidth);
 }
 function inportMedia(){
-	var dir = "cleo-field/";
-	var fileextension = ".jpg";
-	$.ajax({
-	    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-	    url: dir,
-	    success: function (data) {
-	        //Lsit all png file names in the page
+	
+	for (var i = 1; i < 30; i++) {
+		frameArray.push('http://samsadtler.github.io/hacking-the-browser/week-1/cleo-field/cleo-field%20'+i+'.jpg');
+	}
 
-	        $(data).find("a:contains(" + fileextension + ")").each(function () {
-	            var filename = this.href.replace(window.location.host, "").replace("http:///", "");
-	            frameArray.push(dir + filename);
-	        });
-	        console.log(frameArray)
-	    }
-	});
+	// var dir = "https://github.com/samsadtler/hacking-the-browser/blob/gh-pages/week-1/cleo-field/";
+	// var fileextension = ".jpg";
+	// $.ajax({
+	//     //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+	//     url: dir,
+	//     success: function (data) {
+	//         //Lsit all png file names in the page
+
+	//         $(data).find("a:contains(" + fileextension + ")").each(function () {
+	//             var filename = this.href.replace(window.location.host, "").replace("http:///", "");
+	//             frameArray.push(dir + filename);
+	//         });
+	//         console.log(frameArray)
+	//     }
+	// });
 }
 function handleOrientation(event) {
   	var absolute = event.absolute;
